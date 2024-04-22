@@ -1,0 +1,41 @@
+  .loading {
+    display: inline-block;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 90%;
+  }
+
+  .loading.spin {
+    border: 0.5rem solid;
+    border-color: #ff78aa #ffffff16 #ffffff16;
+    animation: spin 1s infinite linear
+  }
+
+  .loading.ease-spin {
+    border: 0.5rem solid;
+    border-color: #25d96e #ffffff16;
+    animation: spin 1s infinite linear;
+  }
+
+  .loading.dot-spin {
+    border: 0.5rem dotted;
+    border-color: #ffffff16 #b564bd #b564bd;
+    animation: spin 1s infinite linear;
+  }
+
+  .loading.double-spin {
+    border: double 0.5rem;
+    border-color: #5094e3 #5094e3 #ffffff16;
+    animation: spin 1.2s infinite linear;
+  }
+
+  .loading.radar-spin {
+    background: conic-gradient(#7abd3300, #7abd33);
+    animation: spin 1.2s infinite linear;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }

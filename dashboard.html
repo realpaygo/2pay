@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/3ee0f23889.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  
+    <div class="top">
+        <img src="top.png" alt="">
+        <p><b>user</b></p>
+    </div>
+    <div class="money">
+        <h1>₦<strong>0</strong></h1>
+    </div>
+   
+    
+
+
+    <div class="buttons">
+        <button>Start Earning</button> <button style="background-color: rgb(36, 34, 34);"><a style="text-decoration: none; background: none;" href="withdraw.html">Withdraw</a></button>
+    </div>
+
+    <div class="box">
+        <p>Click on the start earning button to start receiving your daily bonus.</p>
+</p>
+             
+    </div>
+    <div class="all">
+        <!-- Content for the "all" section can be added here -->
+        <div class="firstimgs">
+            <div class="" style="background: none;">
+                <div class="cir">
+            <i class="fa-solid fa-wifi"></i> 
+
+                </div>
+            <!-- <p style="color: rgb(0, 0, 0); text-align: center; background: none;">Buy Data</p> -->
+        </div>
+ <!--  2-->
+        <div class="" style="background: none;">
+            <div class="cir">
+                <i style="padding-left: 24px;" class="fa-solid fa-mobile-screen"></i>
+
+            </div>
+        <!-- <p style="color: rgb(0, 0, 0); text-align: center; background: none;">Buy Airtime</p> -->
+    </div>
+    <!--3  -->
+    <div class="" style="background: none;">
+        <div class="cir">
+            <i class="fa-solid fa-wallet"></i>
+        </div>
+    <!-- <p style="color: rgb(0, 0, 0); text-align: center; background: none;">Add Funds</p> -->
+</div>
+         
+        </div> <br> <br>
+        <div class="firstimgs">
+            <div class="" style="background: none;">
+                <div class="cir">
+        <i class="fa-solid fa-receipt"></i>
+
+                </div>
+            <!-- <p style="color: rgb(0, 0, 0); text-align: center; background: none;">Transactions</p> -->
+        </div>
+ <!--4  -->
+        <div class="" style="background: none;">
+            <div class="cir">
+              <i class="fa-solid fa-money-bill-transfer"></i>
+
+            </div>
+        <!-- <p style="color: rgb(0, 0, 0); text-align: center; background: none;">Transfer</p> -->
+    </div>
+    <!-- 5 -->
+    <div class="" style="background: none;">
+        <div class="cir">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            
+        </div>
+        <!-- <p style="color: rgb(0, 0, 0); text-align: center; background: none;">Logout</p> -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const startEarningButton = document.querySelector(".buttons button:first-child");
+            const moneyDisplay = document.querySelector(".money h1");
+    
+            const targetValue = 94000.07;
+            const increment = 94000.07;
+            let currentValue = 0;
+    
+            let isButtonClicked = false;
+    
+            function updateValue() {
+                if (currentValue < targetValue) {
+                    currentValue += increment;
+                    moneyDisplay.textContent = formatCurrency(currentValue);
+                } else {
+                    clearInterval(interval);
+                }
+            }
+    
+            function formatCurrency(value) {
+                return value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+    
+            let interval = null;
+    
+            startEarningButton.addEventListener("click", function() {
+                const storedCountdown = localStorage.getItem("countdown");
+    
+                if (storedCountdown) {
+                    alert("Come back tomorrow");
+                } else if (!isButtonClicked) {
+                    isButtonClicked = true;
+                    startEarningButton.disabled = true;
+                    localStorage.setItem("countdown", true);
+                    let countdown = 5;
+                    startEarningButton.textContent = `Countdown: ${countdown}`;
+                    
+                    let countdownInterval = setInterval(function() {
+                        countdown--;
+                        startEarningButton.textContent = `Countdown: ${countdown}`;
+                        if (countdown <= 0) {
+                            clearInterval(countdownInterval);
+                            interval = setInterval(updateValue, 10);
+                            startEarningButton.textContent = "Earning";
+                            startEarningButton.disabled = false;
+                            localStorage.removeItem("countdown");
+                        }
+                    }, 1000);
+                } else {
+                    alert("Come back tomorrow");
+                }
+            });
+    
+            const storedCountdown = localStorage.getItem("countdown");
+            if (storedCountdown) {
+                let countdown = 5;
+                startEarningButton.textContent = `Countdown: ${countdown}`;
+                startEarningButton.disabled = true;
+    
+                let countdownInterval = setInterval(function() {
+                    countdown--;
+                    startEarningButton.textContent = `Countdown: ${countdown}`;
+                    if (countdown <= 0) {
+                        clearInterval(countdownInterval);
+                        interval = setInterval(updateValue, 10);
+                        startEarningButton.textContent = "Earning";
+                        startEarningButton.disabled = false;
+                        localStorage.removeItem("countdown");
+                    }
+                }, 1000);
+            }
+        });
+    </script>

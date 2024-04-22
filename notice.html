@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="link.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;1,500&family=Poppins:wght@400;600&display=swap');
+        
+        * {
+            padding: 0;
+            margin: 0;
+            /* font-family: 'Bitter', serif; */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+        }
+
+        .top {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .top p {
+            padding-top: 17px;
+            padding-left: 7px;
+            font-size: 19px;
+        }
+
+        .top input, select, button {
+            width: 96%;
+            height: 49px;
+            border-radius: 9px;
+            border: 2px solid rgb(76, 2, 181);
+            background: #000;
+            color: white;
+        }
+
+        ::placeholder {
+            padding-left: 10px;
+            color: white;
+        }
+
+        option {
+            color: white;
+        }
+
+        .next {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .next button {
+            position: relative;
+            top: -20px;
+            background: rgb(76, 2, 181);
+            border: none;
+            border-radius: 30px;
+            height: 60px;
+        }
+
+        .next button span {
+            padding-left: 20px;
+            font-size: 18px;
+        }
+
+ 
+        
+
+        .box {
+            width: 95%;
+            height: 40vh;
+            margin: 0 auto;
+           
+            background: #dbd6d6;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0 ;
+           
+        }
+
+        .loading  {
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: 80px;
+        }
+        .time {
+            width: 95%;
+            height: fit-content;
+            margin: 0 auto;
+            position: relative;
+            top: 90px;
+           
+        }
+        .time img{
+            width: 60%;
+            height: fit-content;
+            margin: 0 auto;
+            display: block;
+        }
+        .time p {
+            text-align: center;
+            color: #868686;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="top">
+        <p><strong>Pending Withdrawal</strong></p> <br>
+        <div class="time">
+            <img src="time.jpeg" alt="">
+            <p>You are about to withdraw the sum of ₦<span style="color: none;" id="amountSpan"></span> to your Bank Account please proceed to activate and continue</p>
+        </div>
+           
+        <div class="box" id="boxContainer">
+            <div class='loading dot-spin'></div>
+        </div>
+        
+        <div class="next">
+            <button type="button" id="withdrawButton" onclick="showBox()"><span><b>Proceed to activate</b></span></button>
+        </div>
+    </div>
+
+    <script>
+      // Retrieve the amount from local storage
+      const amount = localStorage.getItem("withdrawAmount");
+
+// Set the amount in the span element
+const amountSpan = document.getElementById("amountSpan");
+amountSpan.textContent = amount;
+
+function showBox() {
+    const withdrawButton = document.getElementById("withdrawButton");
+    const boxContainer = document.getElementById("boxContainer");
+    
+    withdrawButton.style.display = "none";
+    boxContainer.style.display = "block";
+    
+    // Simulate a loading delay (replace this with your actual logic)
+    setTimeout(function() {
+        boxContainer.style.display = "none";
+        withdrawButton.style.display = "block";
+        
+        // Redirect to the next page after the loading delay
+        window.location.href = "pending.html"; // Replace with your desired URL
+    }, 1000);
+}
+    </script>
+</body>
+</html>

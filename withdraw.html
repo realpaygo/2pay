@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="link.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;1,500&family=Poppins:wght@400;600&display=swap');
+        
+        * {
+            padding: 0;
+            margin: 0;
+            /* font-family: 'Bitter', serif; */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+        }
+
+        .top {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .top p {
+            padding-top: 17px;
+            padding-left: 7px;
+            font-size: 19px;
+        }
+
+        .top input, select, button {
+            width: 96%;
+            height: 49px;
+            border-radius: 9px;
+            border: 2px solid rgb(76, 2, 181);
+            background: #000;
+            color: white;
+        }
+
+        ::placeholder {
+            padding-left: 10px;
+            color: white;
+        }
+
+        option {
+            color: white;
+        }
+
+        .next {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .next button {
+            position: relative;
+            top: -20px;
+            background: rgb(76, 2, 181);
+            border: none;
+            border-radius: 30px;
+            height: 60px;
+        }
+
+        .next button span {
+            padding-left: 20px;
+            font-size: 18px;
+        }
+
+ 
+        
+
+        .box {
+            width: 95%;
+            height: 40vh;
+            margin: 0 auto;
+           
+            background: #dbd6d6;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0 ;
+           
+        }
+
+        .loading  {
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: 80px;
+        }
+       
+    </style>
+</head>
+<body>
+  <form action="notice.html">
+  <div class="top">
+        <p><strong>Withdraw to your Bank</strong></p> <br>
+        <form action="">
+            <input type="tel" placeholder="Account Number" required><br><br>
+            <input type="text" placeholder="Account name" required><br><br>
+            <select>
+                <option required>Access Bank</option>
+                <option >Fidelity Bank</option>
+                <option >FCMB Bank</option>
+                <option >GTBank Bank</option>
+                <option >UBA Bank</option>
+                <option >Zenith  Bank</option>
+                <option >Ecobank Bank</option>
+                <option >Keystone Bank</option>
+                <option >Polaris Bank</option>
+                <option >Stanbic Bank</option>
+                <option >Standard Chartered Bank</option>
+                <option >Sterling Bank</option>
+                <option >Wema Bank</option>
+                <option >Palmpay Bank</option>
+                <option >Opay Bank</option>
+                <option >Heritage Bank</option>
+                <option >Citibank  Bank</option>
+                <option >Titan Trust bank</option>
+                <option >Kuda Bank</option>
+                <option >Chipper Bank</option>
+                <option >Flutterwave Bank</option>
+                <option >Paystack Bank</option>
+                <option >Paga Bank</option>
+                <option >VFD Bank</option>
+                <option >UBA Bank</option>
+                <option >First Bank</option>
+                <option >Jaiz Bank</option>
+                <option >union Bank</option>
+                <option >unity Bank</option>
+                <option >Moniepoint Bank</option>
+                <option >Raven Bank</option>
+                <option >Sparkle Bank</option>
+                <option >Rubbies Bank</option>
+                <option >Paystack Bank</option>
+                <option >Paga Bank</option>
+                <option >Fairmoney Bank</option>
+                <option >Dot Mf Bank</option>
+                <option >MKOBO Bank</option>
+                <option >Rex MF Bank</option>
+            </select><br><br>
+            <input type="tel" placeholder="Amount" id="amountInput" required><br>
+            <p style="color: rgb(76, 2, 181);">Available balance: ₦94,000.07</p>
+           
+            <div class="box" id="boxContainer">
+                <div class='loading dot-spin'></div>
+            </div>
+            
+            <div class="next">
+                <button type="button" id="withdrawButton" onclick="showBox()"><span><b>Withdraw</b></span></button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+      function showBox() {
+            const withdrawButton = document.getElementById("withdrawButton");
+            const boxContainer = document.getElementById("boxContainer");
+            
+            withdrawButton.style.display = "none";
+            boxContainer.style.display = "block";
+            
+            // Simulate a loading delay (replace this with your actual logic)
+            setTimeout(function() {
+                const amount = document.getElementById("amountInput").value;
+                
+                // Store the amount in local storage
+                localStorage.setItem("withdrawAmount", amount);
+                
+                boxContainer.style.display = "none";
+                withdrawButton.style.display = "block";
+                
+                // Redirect to the next page after the loading delay
+                window.location.href = "notice.html"; // Replace with your desired URL
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
